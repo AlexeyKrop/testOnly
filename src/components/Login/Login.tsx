@@ -36,11 +36,11 @@ export const Login = (props: LoginPropsType) => {
     <form onSubmit={onSubmit}>
       <label>Логин</label>
       <input {...register("login", {required: true})} />
-      {/*<div>{errors.login && "Обязательное поле"}</div>*/}
+      <div>{errors.login && "Обязательное поле"}</div>
       <label>Пароль</label>
       <input type="password" {...register("password", {required: true})} />
       {/*<div>{errors.password && "Обязательное поле"}</div>*/}
-      <Button disabled={props.disabled} type='submit'>Войти</Button>
+      <Button primary background={'#4A67FF'} disabled={props.disabled} type='submit'>Войти</Button>
     </form>
     </>
   );

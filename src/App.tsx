@@ -24,27 +24,39 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState('')
   const [disabled, setDisabled] = useState<boolean>(false)
 
+
   const setLoginUser = (login: string, password: string) => {
+    //меняю состояние кнопки при запросе на сервер(disabled)
     setDisabled(true)
+    //имитация запроса на сервер(login)
     authAPI.login(login, password)
       .then((data) => {
+        //сетаю юзера, которого получил с сервера в локальный стейт
         setUser(data)
+        //меняю состояние, что юзер залогинен
         setLogin(!isLogin)
       })
       .catch(err => {
+        //перехватываю ошибку с сервера и сетаю ошибку в локальный стейт
         setErrorMessage(err)
       })
       .finally(() => {
+        //меняю состояние кнопки при запросе на сервер(disabled=false)
         setDisabled(false)
       })
   }
+
   const setLogoutUser = () => {
+    //меняю состояние кнопки при запросе на сервер(disabled)
     setDisabled(true)
+    //имитация запроса на сервер(logout)
     authAPI.logout()
+      //меняю состояние, что юзер вышел
       .then(data => setLogin(!isLogin))
       .catch(err => console.log(err))
       .finally(() => {
         setDisabled(false)
+        setErrorMessage('')
       })
   }
   return (
