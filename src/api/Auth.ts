@@ -1,3 +1,5 @@
+import {v1} from "uuid";
+
 export const loginUser = (login: string, password: string) => {
   return new Promise((res, rej) => {
     if (login === 'steve.jobs@example.com' && password === 'password') {
@@ -7,18 +9,32 @@ export const loginUser = (login: string, password: string) => {
     } else {
       rej(`Пользователя ${login} не существует`)
     }
-  }).then((data) => console.log(data))
-    .catch(err => console.log(err))
+  })
 }
 
-// export const authAPI = {
-//   me(){
-//     return instance.get<ResponseType<{id: number, email: string, login: string}>>(`/auth/me`)
-//   },
-//   login(authParams: AuthParamsType){
-//     return instance.post<AuthParamsType, AxiosResponse<ResponseType<{ userId?: number }>>>(`/auth/login`, authParams)
-//   },
-//   logout(){
-//     return instance.delete<ResponseType>(`/auth/login`)
-//   }
-// }
+export const authAPI = {
+  login(login: string, password: string){
+    return new Promise((res, rej) => {
+      if (login === 'steve.jobs@example.com' && password === 'password') {
+        setTimeout(() => {
+          res({id: v1(), login: 'steve.jobs@example.com'})
+        }, 1000)
+      } else {
+        setTimeout(() => {
+          rej(`Пользователя ${login} не существует`)
+        }, 1000)
+      }
+    })
+  },
+  logout(){
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+          res('Успешный выход')
+        }, 1000)
+    })
+
+  }
+  // logout(){
+  //   return instance.delete<ResponseType>(`/auth/login`)
+  // }
+}

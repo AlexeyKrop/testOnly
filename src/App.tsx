@@ -1,20 +1,67 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction, useState} from 'react';
 import './App.css';
 import {Login} from "./components/Login/Login";
 import styled from "styled-components";
+import {authAPI} from "./api/Auth";
+import {Navigate, Route, Routes} from 'react-router-dom';
+import {Profile} from "./components/Profile/Profile";
 
 const StyledWrapperApp = styled.div`
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 `
-const App = () => (
-  <>
-    <StyledWrapperApp>
-      <Login/>
-    </StyledWrapperApp>
-  </>
-);
+export type UserType = {
+  id: string
+  login: string
+}
+const App = () => {
+  const initialState = {} as UserType
+  const [user, setUser] = useState<any>(initialState)
+  const [isLogin, setLogin] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [disabled, setDisabled] = useState<boolean>(false)
+
+  const setLoginUser = (login: string, password: string) => {
+    setDisabled(true)
+    authAPI.login(login, password)
+      .then((data) => {
+        setUser(data)
+        setLogin(!isLogin)
+      })
+      .catch(err => {
+        setErrorMessage(err)
+      })
+      .finally(() => {
+        setDisabled(false)
+      })
+  }
+  const setLogoutUser = () => {
+    setDisabled(true)
+    authAPI.logout()
+      .then(data => setLogin(!isLogin))
+      .catch(err => console.log(err))
+      .finally(() => {
+        setDisabled(false)
+      })
+  }
+  return (
+    <>
+      <StyledWrapperApp>
+        <Routes>
+          <Route path={'/'} element={<Navigate to={'/profile'}/>}/>
+          <Route path="/profile" element={<Profile user={user} disabled={disabled} setLogoutUser={setLogoutUser} isLogin={isLogin}/>}/>
+          <Route path="/login"
+                 element={<Login disabled={disabled} callBack={setLoginUser} isLogin={isLogin} errorMessage={errorMessage}/>}/>
+          <Route path="*" element={<Navigate to={'404'}/>}/>
+        </Routes>
+
+      </StyledWrapperApp>
+    </>
+  )
+}
+
 
 export default App;

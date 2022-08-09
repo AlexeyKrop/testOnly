@@ -4,12 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createGlobalStyle} from "styled-components";
+import {BrowserRouter} from "react-router-dom";
+
 const Global = createGlobalStyle`
-  *{
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Helvetica Neue',sans-serif;
+    font-family: 'Helvetica Neue', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -20,10 +22,12 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <Global/>
-    <App />
-  </React.StrictMode>
+  <>
+    <BrowserRouter>
+      <Global/>
+      <App/>
+    </BrowserRouter>
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function
