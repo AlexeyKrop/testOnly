@@ -21,7 +21,7 @@ const StyledButton = styled.button<ButtonProps>`
   `},
 `
 
-export const Button = (props: any) => {
+export const Button = ({...props}) => {
   return <StyledButton {...props}/>;
 };
 

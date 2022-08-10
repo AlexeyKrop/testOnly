@@ -1,5 +1,7 @@
 import styled, {css} from "styled-components";
 import warning from '../../warning.svg'
+import {ReactNode} from "react";
+
 
 type InputPropsType = {
   background?: boolean,
@@ -41,12 +43,13 @@ const TitleStyle = styled.span`
   margin-left: 10px`
 
 
-export const ContainerError = (props: any) => {
+export const ContainerError = (props: { children: ReactNode }) => {
   return <StyledContainerError>
     <img className={'image'} src={warning} alt="warn"/>
     <TitleStyle>{props.children}</TitleStyle>
   </StyledContainerError>
 }
+
 
 
 

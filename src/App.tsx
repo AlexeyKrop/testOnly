@@ -19,7 +19,7 @@ export type UserType = {
 }
 const App = () => {
   const initialState = {} as UserType
-  const [user, setUser] = useState<any>(initialState)
+  const [user, setUser] = useState<UserType>(initialState)
   const [isLogin, setLogin] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [disabled, setDisabled] = useState<boolean>(false)
@@ -31,7 +31,7 @@ const App = () => {
     authAPI.login(login, password, rememberMe)
       .then((data) => {
         //сетаю юзера, которого получил с сервера в локальный стейт
-        setUser(data)
+        setUser(data as UserType)
         //меняю состояние, что юзер залогинен
         setLogin(!isLogin)
       })

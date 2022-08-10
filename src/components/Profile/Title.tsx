@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {ReactNode} from "react";
 
 export const Title = styled.p`
   font-size: 40px;
@@ -15,7 +16,7 @@ export const ProfileWrapper = styled.div`
   align-items: center;
   flex-direction: column;
 `
-export const UserName = (props: any) => {
+export const UserName = (props: {children: ReactNode}) => {
     return(
       <>
         <Title><SpanStyled>Здравствуйте,</SpanStyled>{props.children}</Title>
