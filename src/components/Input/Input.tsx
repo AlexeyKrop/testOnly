@@ -22,7 +22,7 @@ export const StyledError = styled.div`
   margin-top: 8px;
   margin-bottom: 20px;
 `;
-export const StyledInput = styled.input<InputPropsType>`
+export const CustomInput = styled.input<InputPropsType>`
   ${sharedStyles};
   width: 100%;
   border: ${(props: any) => props.border || 'none'};
