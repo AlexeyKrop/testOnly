@@ -1,7 +1,8 @@
 import React from 'react';
-import {useForm} from "react-hook-form";
-import { Navigate } from 'react-router-dom';
+import {Controller, useForm} from "react-hook-form";
+import {Navigate} from 'react-router-dom';
 import {Button} from "../Button/Button";
+import {StyledError, StyledInput} from "../Input/Input";
 
 type FormData = {
   login: string;
@@ -30,18 +31,19 @@ export const Login = (props: LoginPropsType) => {
 
   return (
     <>
-    <div>
-      {props.errorMessage ? props.errorMessage : ''}
-    </div>
-    <form onSubmit={onSubmit}>
-      <label>Логин</label>
-      <input {...register("login", {required: true})} />
-      <div>{errors.login && "Обязательное поле"}</div>
-      <label>Пароль</label>
-      <input type="password" {...register("password", {required: true})} />
-      {/*<div>{errors.password && "Обязательное поле"}</div>*/}
-      <Button primary background={'#4A67FF'} disabled={props.disabled} type='submit'>Войти</Button>
-    </form>
+      <div>
+        {props.errorMessage ? props.errorMessage : ''}
+      </div>
+      <form onSubmit={onSubmit}>
+
+        <label>Логин</label>
+        <StyledInput  {...register("login", {required: true,})}/>
+        <StyledError>{errors.login && "Обязательное поле"}</StyledError>
+        <label>Пароль</label>
+        <StyledInput type="password" {...register("password", {required: true})} />
+        <StyledError>{errors.password && "Обязательное поле"}</StyledError>
+        <Button primary background={'#4A67FF'} disabled={props.disabled} type='submit'>Войти</Button>
+      </form>
     </>
   );
 };

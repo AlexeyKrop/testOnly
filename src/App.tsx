@@ -28,7 +28,6 @@ const App = () => {
   const setLoginUser = (login: string, password: string) => {
     //меняю состояние кнопки при запросе на сервер(disabled)
     setDisabled(true)
-    //имитация запроса на сервер(login)
     authAPI.login(login, password)
       .then((data) => {
         //сетаю юзера, которого получил с сервера в локальный стейт
@@ -36,14 +35,8 @@ const App = () => {
         //меняю состояние, что юзер залогинен
         setLogin(!isLogin)
       })
-      .catch(err => {
-        //перехватываю ошибку с сервера и сетаю ошибку в локальный стейт
-        setErrorMessage(err)
-      })
-      .finally(() => {
-        //меняю состояние кнопки при запросе на сервер(disabled=false)
-        setDisabled(false)
-      })
+      .catch(err => setErrorMessage(err))
+      .finally(() => setDisabled(false))
   }
 
   const setLogoutUser = () => {
@@ -64,9 +57,11 @@ const App = () => {
       <StyledWrapperApp>
         <Routes>
           <Route path={'/'} element={<Navigate to={'/profile'}/>}/>
-          <Route path="/profile" element={<Profile user={user} disabled={disabled} setLogoutUser={setLogoutUser} isLogin={isLogin}/>}/>
+          <Route path="/profile"
+                 element={<Profile user={user} disabled={disabled} setLogoutUser={setLogoutUser} isLogin={isLogin}/>}/>
           <Route path="/login"
-                 element={<Login disabled={disabled} callBack={setLoginUser} isLogin={isLogin} errorMessage={errorMessage}/>}/>
+                 element={<Login disabled={disabled} callBack={setLoginUser} isLogin={isLogin}
+                                 errorMessage={errorMessage}/>}/>
           <Route path="*" element={<Navigate to={'404'}/>}/>
         </Routes>
 
