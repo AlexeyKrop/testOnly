@@ -1,15 +1,17 @@
 import React from 'react';
-import {Controller, useForm} from "react-hook-form";
+import {useForm} from "react-hook-form";
 import {Navigate} from 'react-router-dom';
 import {Button} from "../Button/Button";
-import {StyledError, StyledInput} from "../Input/Input";
+import {ContainerError, StyledError, StyledInput} from "../Input/Input";
+import {CheckBox, CheckBoxContainer, LabelText} from "../CheckBox";
 
 type FormData = {
   login: string;
   password: string;
+  rememberMe?: boolean
 };
 type LoginPropsType = {
-  callBack: (login: string, password: string) => void
+  callBack: (login: string, password: string, rememberMe: boolean) => void
   isLogin: boolean
   errorMessage: string
   disabled: boolean
@@ -18,12 +20,11 @@ type LoginPropsType = {
 export const Login = (props: LoginPropsType) => {
   const {
     register,
-    setValue,
     handleSubmit,
     formState: {errors}
   } = useForm<FormData>();
-  const onSubmit = handleSubmit(({login, password}) => {
-    props.callBack(login, password)
+  const onSubmit = handleSubmit(({login, password, rememberMe = false}) => {
+    props.callBack(login, password, rememberMe)
   });
   if (props.isLogin) {
     return <Navigate to="/profile"/>
@@ -31,17 +32,20 @@ export const Login = (props: LoginPropsType) => {
 
   return (
     <>
-      <div>
-        {props.errorMessage ? props.errorMessage : ''}
-      </div>
+      {props.errorMessage && <ContainerError>
+        {props.errorMessage}
+      </ContainerError>}
       <form onSubmit={onSubmit}>
-
         <label>Логин</label>
-        <StyledInput  {...register("login", {required: true,})}/>
+        <StyledInput border={errors.login && '1px solid red'} {...register("login", {required: true,})}/>
         <StyledError>{errors.login && "Обязательное поле"}</StyledError>
         <label>Пароль</label>
-        <StyledInput type="password" {...register("password", {required: true})} />
+        <StyledInput border={errors.password && '1px solid red'}
+                     type="password" {...register("password", {required: true})} />
         <StyledError>{errors.password && "Обязательное поле"}</StyledError>
+        <CheckBoxContainer><CheckBox {...register("rememberMe")} />
+          <LabelText>Запомнить пароль</LabelText></CheckBoxContainer>
+
         <Button primary background={'#4A67FF'} disabled={props.disabled} type='submit'>Войти</Button>
       </form>
     </>

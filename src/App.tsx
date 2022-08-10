@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction, useState} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {Login} from "./components/Login/Login";
 import styled from "styled-components";
@@ -25,10 +25,10 @@ const App = () => {
   const [disabled, setDisabled] = useState<boolean>(false)
 
 
-  const setLoginUser = (login: string, password: string) => {
+  const setLoginUser = (login: string, password: string, rememberMe: boolean) => {
     //меняю состояние кнопки при запросе на сервер(disabled)
     setDisabled(true)
-    authAPI.login(login, password)
+    authAPI.login(login, password, rememberMe)
       .then((data) => {
         //сетаю юзера, которого получил с сервера в локальный стейт
         setUser(data)

@@ -13,16 +13,22 @@ export const loginUser = (login: string, password: string) => {
 }
 
 export const authAPI = {
-  login(login: string, password: string){
+  login(login: string, password: string, rememberMe: boolean){
     return new Promise((res, rej) => {
       if (login === 'steve.jobs@example.com' && password === 'password') {
         setTimeout(() => {
           res({id: v1(), login: 'steve.jobs@example.com'})
         }, 1000)
       } else {
-        setTimeout(() => {
-          rej(`Пользователя ${login} не существует`)
-        }, 1000)
+        if(password === 'password'){
+          setTimeout(() => {
+            rej(`Пользователя ${login} не существует`)
+          }, 1000)
+        }else{
+          setTimeout(() => {
+            rej(`Неверный пароль`)
+          }, 1000)
+        }
       }
     })
   },
