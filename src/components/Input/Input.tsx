@@ -3,7 +3,7 @@ import warning from '../../warning.svg'
 import {ReactNode} from "react";
 
 type InputPropsType = {
-  background?: boolean,
+  background?: string,
   border?: string
 }
 const sharedStyles = css`
@@ -25,17 +25,17 @@ export const StyledError = styled.div`
 export const CustomInput = styled.input<InputPropsType>`
   ${sharedStyles};
   width: 100%;
-  border: ${(props: any) => props.border || 'none'};
-  background: ${(props: any) => props.background || '#F5F5F5'};
+  border: ${props => props.border || 'none'};
+  background: ${props => props.background || '#F5F5F5'};
 `;
-const StyledContainerError = styled.div`
+const StyledContainerError = styled.div<{background?: string}>`
   ${sharedStyles};
   width: 100%;
   display: flex;
   align-items: center;
   border: 1px solid #E26F6F;
   margin-bottom: 27px;
-  background: ${(props: any) => props.background || '#F5E9E9'};
+  background: ${props => props.background || '#F5E9E9'};
 `;
 const TitleStyle = styled.span`
   margin-left: 10px`
