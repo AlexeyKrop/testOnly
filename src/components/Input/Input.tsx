@@ -2,7 +2,6 @@ import styled, {css} from "styled-components";
 import warning from '../../warning.svg'
 import {ReactNode} from "react";
 
-
 type InputPropsType = {
   background?: boolean,
   border?: string
@@ -14,7 +13,6 @@ const sharedStyles = css`
   border-radius: 8px;
   border: none;
   box-sizing: border-box;
-
   &:focus {
     outline: none;
   }

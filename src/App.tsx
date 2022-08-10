@@ -7,11 +7,19 @@ import {Navigate, Route, Routes} from 'react-router-dom';
 import {Profile} from "./components/Profile/Profile";
 
 const StyledWrapperApp = styled.div`
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+`
+const StyledHeaderApp = styled.h1`
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 78px;
+  color: #000000;
+  margin: 40px auto 0 auto;
+  text-align: center;
 `
 export type UserType = {
   id: string
@@ -54,6 +62,7 @@ const App = () => {
   }
   return (
     <>
+      <StyledHeaderApp>ONLY.</StyledHeaderApp>
       <StyledWrapperApp>
         <Routes>
           <Route path={'/'} element={<Navigate to={'/profile'}/>}/>
