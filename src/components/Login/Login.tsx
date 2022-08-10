@@ -3,7 +3,7 @@ import {useForm} from "react-hook-form";
 import {Navigate} from 'react-router-dom';
 import {Button} from "../Button/Button";
 import {ContainerError, StyledError, StyledInput} from "../Input/Input";
-import {CheckBox, CheckBoxContainer, LabelText} from "../CheckBox";
+import {CheckBox, CheckBoxContainer, LabelText} from "../Input/CheckBox";
 
 type FormData = {
   login: string;

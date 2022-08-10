@@ -64,7 +64,6 @@ const App = () => {
                                  errorMessage={errorMessage}/>}/>
           <Route path="*" element={<Navigate to={'404'}/>}/>
         </Routes>
-
       </StyledWrapperApp>
     </>
   )

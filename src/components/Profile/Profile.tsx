@@ -2,6 +2,7 @@ import React from 'react';
 import {UserType} from "../../App";
 import {Navigate} from "react-router-dom";
 import {Button} from "../Button/Button";
+import {ProfileWrapper, UserName} from "./Title";
 type ProfilePropsType = {
   user: UserType
   setLogoutUser: () => void
@@ -16,9 +17,9 @@ export const Profile = (props: ProfilePropsType) => {
     return <Navigate to="/login"/>
   }
   return (
-    <div>
-      <h2>Здравствуйте, {props.user.login}</h2>
+    <ProfileWrapper>
+      <UserName>{props.user.login}</UserName>
       <Button onClick={onClickHandler} primary background={'#F5F5F5'} color={'#000000'} disabled={props.disabled} width={'200px'} type='submit'>Выйти</Button>
-    </div>
+    </ProfileWrapper>
   );
 };
