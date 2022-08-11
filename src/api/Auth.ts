@@ -16,7 +16,7 @@ export const authAPI = {
           }, 1000)
         }else{
           setTimeout(() => {
-            rej(`Неверный пароль`)
+            rej(`Неверный логин или пароль`)
           }, 1000)
         }
       }
