@@ -9,6 +9,7 @@ test('check success auth user', () => {
     })
   });
 });
-test('the fetch fails with an error', () => {
-  return expect(authAPI.login('login', 'password', true)).rejects.toMatch("Пользователя login не существует");
+test('check fails auth user', () => {
+  return expect(
+    authAPI.login('login', 'password', true)).rejects.toMatch("Пользователя login не существует");
 });
