@@ -58,7 +58,7 @@ const App = () => {
                  element={<Profile user={user} disabled={disabled} setLogoutUser={setLogoutUser} isLogin={isLogin}/>}/>
           <Route path="/login"
                  element={<Login disabled={disabled} callBack={setLoginUser} isLogin={isLogin}
-                                 errorMessage={errorMessage}/>}/>
+                                 errorMessage={errorMessage} setErrorMessage={setErrorMessage}/>}/>
           <Route path="404" element={<Error404/>}/>
           <Route path="*" element={<Navigate to={'404'}/>}/>
         </Routes>

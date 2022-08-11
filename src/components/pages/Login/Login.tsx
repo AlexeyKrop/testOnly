@@ -4,6 +4,7 @@ import {Navigate} from 'react-router-dom';
 import {Button} from "../../Button/Button";
 import {ContainerError, CustomInput, StyledError} from "../../Input/Input";
 import {CheckBoxContainer, CustomCheckBox, LabelText, StyledCheckboxWrapper} from "../../Input/CheckBox";
+import {validateLogin} from "../../../utils/validate";
 
 type FormData = {
   login: string;
@@ -15,6 +16,7 @@ type LoginPropsType = {
   isLogin: boolean
   errorMessage: string
   disabled: boolean
+  setErrorMessage: (errorMessage: string) => void
 }
 
 export const Login = (props: LoginPropsType) => {
@@ -24,7 +26,9 @@ export const Login = (props: LoginPropsType) => {
     formState: {errors}
   } = useForm<FormData>();
   const onSubmit = handleSubmit(({login, password, rememberMe = false}) => {
-    props.callBack(login, password, rememberMe)
+    if(validateLogin(props.setErrorMessage, password)){
+      props.callBack(login, password, rememberMe)
+    }
   });
   if (props.isLogin) {
     return <Navigate to="/profile"/>
