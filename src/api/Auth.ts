@@ -28,9 +28,5 @@ export const authAPI = {
           res('Успешный выход')
         }, 1000)
     })
-
   }
-  // logout(){
-  //   return instance.delete<ResponseType>(`/auth/login`)
-  // }
 }

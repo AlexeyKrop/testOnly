@@ -17,3 +17,7 @@ test('check fails password', () => {
   return expect(
     authAPI.login('steve.jobs@example.com', 'pass', true)).rejects.toMatch("Неверный пароль");
 });
+
+test('check success out', () => {
+  return expect(authAPI.logout()).resolves.toBe('Успешный выход');
+});
