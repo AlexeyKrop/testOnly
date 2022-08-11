@@ -6,7 +6,7 @@ import {authAPI} from "./api/Auth";
 import {Navigate, Route, Routes} from 'react-router-dom';
 import {Profile} from "./components/pages/Profile/Profile";
 import {Error404} from "./components/pages/Error404/Error404";
-import { StyledHeaderApp, StyledWrapperApp } from './components/pages/App/App';
+import { StyledHeaderApp, StyledWrapperApp } from './components/pages/App/AppStyled';
 
 
 export type UserType = {
