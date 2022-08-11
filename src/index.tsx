@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createGlobalStyle} from "styled-components";
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, HashRouter} from "react-router-dom";
 
 const Global = createGlobalStyle`
   * {
@@ -22,12 +22,10 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <>
-    <BrowserRouter>
-      <Global/>
-      <App/>
-    </BrowserRouter>
-  </>
+  <HashRouter>
+    <Global/>
+    <App/>
+  </HashRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
