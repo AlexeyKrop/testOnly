@@ -1,23 +1,13 @@
 import {v1} from "uuid";
 
-export const loginUser = (login: string, password: string) => {
-  return new Promise((res, rej) => {
-    if (login === 'steve.jobs@example.com' && password === 'password') {
-      setTimeout(() => {
-        res('вход успешный')
-      }, 1000)
-    } else {
-      rej(`Пользователя ${login} не существует`)
-    }
-  })
-}
 
 export const authAPI = {
+  userId: v1(),
   login(login: string, password: string, rememberMe: boolean){
     return new Promise((res, rej) => {
       if (login === 'steve.jobs@example.com' && password === 'password') {
         setTimeout(() => {
-          res({id: v1(), login: 'steve.jobs@example.com'})
+          res({id: authAPI.userId, login: 'steve.jobs@example.com'})
         }, 1000)
       } else {
         if(password === 'password'){
