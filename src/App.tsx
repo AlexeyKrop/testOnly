@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Login} from "./components/Login/Login";
+import {Login} from "./components/pages/Login/Login";
 import styled from "styled-components";
 import {authAPI} from "./api/Auth";
 import {Navigate, Route, Routes} from 'react-router-dom';
-import {Profile} from "./components/Profile/Profile";
+import {Profile} from "./components/pages/Profile/Profile";
+import {Error404} from "./components/pages/Error404/Error404";
 
 const StyledWrapperApp = styled.div`
   min-height: 80vh;
@@ -71,6 +72,7 @@ const App = () => {
           <Route path="/login"
                  element={<Login disabled={disabled} callBack={setLoginUser} isLogin={isLogin}
                                  errorMessage={errorMessage}/>}/>
+          <Route path="404" element={<Error404/>}/>
           <Route path="*" element={<Navigate to={'404'}/>}/>
         </Routes>
       </StyledWrapperApp>

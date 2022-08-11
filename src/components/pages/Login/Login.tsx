@@ -1,9 +1,9 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
 import {Navigate} from 'react-router-dom';
-import {Button} from "../Button/Button";
-import {ContainerError, CustomInput, StyledError} from "../Input/Input";
-import {CheckBoxContainer, CustomCheckBox, LabelText, StyledCheckboxWrapper} from "../Input/CheckBox";
+import {Button} from "../../Button/Button";
+import {ContainerError, CustomInput, StyledError} from "../../Input/Input";
+import {CheckBoxContainer, CustomCheckBox, LabelText, StyledCheckboxWrapper} from "../../Input/CheckBox";
 
 type FormData = {
   login: string;

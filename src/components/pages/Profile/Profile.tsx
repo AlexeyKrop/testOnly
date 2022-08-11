@@ -1,7 +1,7 @@
 import React from 'react';
-import {UserType} from "../../App";
+import {UserType} from "../../../App";
 import {Navigate} from "react-router-dom";
-import {Button} from "../Button/Button";
+import {Button} from "../../Button/Button";
 import {ProfileWrapper, UserName} from "./Title";
 type ProfilePropsType = {
   user: UserType
