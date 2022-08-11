@@ -14,6 +14,8 @@
 - **uuid** and **@types/uuid**
 
 
+Auth.ts покрыта тестами с помощью **jest**
+
 В проекте используется **HashRouter**, так как проект размещен на Github pages,
 в проектах с серверами использую **BrowserRouter** 
 
